@@ -43,6 +43,16 @@
     </StackPanel>
 
     <StackPanel Grid.Column="2" Orientation="Horizontal">
+      <Button Classes="icon_button" Width="32" Command="{Binding ToggleWorkspaceOnly}" ToolTip.Tip="{DynamicResource Text.Welcome.WorkspaceOnly}">
+        <Grid Width="16" Height="16">
+          <Path Width="14" Height="14" Margin="0,2,0,0" Data="{StaticResource Icons.Workspace}"/>
+          <Border Width="6" Height="6" CornerRadius="3"
+                  HorizontalAlignment="Right" VerticalAlignment="Top"
+                  Background="{DynamicResource Brush.Accent}"
+                  IsVisible="{Binding WorkspaceOnly}"/>
+        </Grid>
+      </Button>
+
       <Button Classes="icon_button" Width="32" Command="{Binding AddRootNode}" ToolTip.Tip="{DynamicResource Text.Welcome.AddRootFolder}">
         <Path Width="14" Height="14" Margin="0,2,0,0" Data="{StaticResource Icons.Folder.Add}"/>
       </Button>

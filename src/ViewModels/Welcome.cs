@@ -29,6 +29,16 @@ namespace SourceGit.ViewModels
             }
         }
 
+        public bool WorkspaceOnly
+        {
+            get => _workspaceOnly;
+            set
+            {
+                if (SetProperty(ref _workspaceOnly, value))
+                    Refresh();
+            }
+        }
+
         public Welcome()
         {
             Refresh();
@@ -36,21 +46,20 @@ namespace SourceGit.ViewModels
 
         public void Refresh()
         {
-            if (string.IsNullOrWhiteSpace(_searchFilter))
-            {
-                foreach (var node in Preferences.Instance.RepositoryNodes)
-                    ResetVisibility(node);
-            }
-            else
-            {
-                foreach (var node in Preferences.Instance.RepositoryNodes)
-                    SetVisibilityBySearch(node);
-            }
+            var workspaceRepos = GetActiveWorkspaceRepoSet();
+
+            foreach (var node in Preferences.Instance.RepositoryNodes)
+                ApplyVisibility(node, workspaceRepos);
 
             var rows = new List<RepositoryNode>();
             MakeTreeRows(rows, Preferences.Instance.RepositoryNodes);
             Rows.Clear();
             Rows.AddRange(rows);
+        }
+
+        public void ToggleWorkspaceOnly()
+        {
+            WorkspaceOnly = !WorkspaceOnly;
         }
 
         public async Task UpdateStatusAsync(bool force, CancellationToken? token)
@@ -237,6 +246,54 @@ namespace SourceGit.ViewModels
             Refresh();
         }
 
+        private HashSet<string> GetActiveWorkspaceRepoSet()
+        {
+            if (!_workspaceOnly)
+                return null;
+
+            var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var repo in Preferences.Instance.GetActiveWorkspace().Repositories)
+                set.Add(repo.Replace('\\', '/').TrimEnd('/'));
+
+            return set;
+        }
+
+        private void ApplyVisibility(RepositoryNode node, HashSet<string> workspaceRepos)
+        {
+            var hasSearch = !string.IsNullOrWhiteSpace(_searchFilter);
+
+            if (!node.IsRepository)
+            {
+                if (workspaceRepos == null && hasSearch &&
+                    node.Name.Contains(_searchFilter, StringComparison.OrdinalIgnoreCase))
+                {
+                    node.IsVisible = true;
+                    foreach (var subNode in node.SubNodes)
+                        ResetVisibility(subNode);
+                    return;
+                }
+
+                var hasVisibleSubNode = false;
+                foreach (var subNode in node.SubNodes)
+                {
+                    ApplyVisibility(subNode, workspaceRepos);
+                    hasVisibleSubNode |= subNode.IsVisible;
+                }
+                node.IsVisible = hasVisibleSubNode;
+                return;
+            }
+
+            var visible = true;
+            if (workspaceRepos != null)
+                visible = workspaceRepos.Contains(node.Id.Replace('\\', '/').TrimEnd('/'));
+
+            if (visible && hasSearch)
+                visible = node.Name.Contains(_searchFilter, StringComparison.OrdinalIgnoreCase) ||
+                    node.Id.Contains(_searchFilter, StringComparison.OrdinalIgnoreCase);
+
+            node.IsVisible = visible;
+        }
+
         private void ResetVisibility(RepositoryNode node)
         {
             node.IsVisible = true;
@@ -290,6 +347,7 @@ namespace SourceGit.ViewModels
         }
 
         private string _searchFilter = string.Empty;
+        private bool _workspaceOnly = false;
         private bool _isUpdatingStatus = false;
     }
 }

@@ -44,6 +44,7 @@ namespace SourceGit.ViewModels
 
             // New welcome page will clear the search filter before.
             Welcome.Instance.ClearSearchFilter();
+            Welcome.Instance.WorkspaceOnly = false;
         }
 
         public LauncherPage(RepositoryNode node, Repository repo)

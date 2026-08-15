@@ -986,6 +986,7 @@
   <x:String x:Key="Text.Welcome.OpenOrInit" xml:space="preserve">Abrir Repositorio</x:String>
   <x:String x:Key="Text.Welcome.OpenTerminal" xml:space="preserve">Abrir Terminal</x:String>
   <x:String x:Key="Text.Welcome.ScanDefaultCloneDir" xml:space="preserve">Reescanear Repositorios en el Directorio de Clonado por Defecto</x:String>
+  <x:String x:Key="Text.Welcome.WorkspaceOnly" xml:space="preserve">Mostrar Solo el Workspace Activo</x:String>
   <x:String x:Key="Text.Welcome.Search" xml:space="preserve">Buscar Repositorios...</x:String>
   <x:String x:Key="Text.WorkingCopy" xml:space="preserve">Cambios</x:String>
   <x:String x:Key="Text.WorkingCopy.AddToGitIgnore" xml:space="preserve">Git Ignore</x:String>
