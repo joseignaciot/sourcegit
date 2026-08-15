@@ -474,6 +474,28 @@ namespace SourceGit.ViewModels
             set;
         } = [];
 
+        // Maps forge host -> kind ("github" | "gitlab"). Tokens are NEVER stored
+        // here; they live in the OS keychain (Models.Forge.ForgeCredentialStore).
+        public Dictionary<string, string> ForgeHosts
+        {
+            get;
+            set;
+        } = [];
+
+        public bool IsGitLabHost(string host)
+        {
+            if (host.Contains("gitlab", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            return ForgeHosts.TryGetValue(host, out var kind) && kind == "gitlab";
+        }
+
+        public void SetForgeHostKind(string host, string kind)
+        {
+            ForgeHosts[host.ToLowerInvariant()] = kind;
+            Save();
+        }
+
         public AvaloniaList<Models.CustomAction> CustomActions
         {
             get;

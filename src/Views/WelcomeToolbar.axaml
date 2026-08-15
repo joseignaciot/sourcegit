@@ -43,6 +43,10 @@
     </StackPanel>
 
     <StackPanel Grid.Column="2" Orientation="Horizontal">
+      <Button Classes="icon_button" Width="32" Command="{Binding ConfigureForgeToken}" ToolTip.Tip="{DynamicResource Text.Welcome.ForgeToken}">
+        <Path Width="14" Height="14" Margin="0,2,0,0" Data="{StaticResource Icons.Lock}"/>
+      </Button>
+
       <Button Classes="icon_button" Width="32" Command="{Binding ToggleWorkspaceOnly}" ToolTip.Tip="{DynamicResource Text.Welcome.WorkspaceOnly}">
         <Grid Width="16" Height="16">
           <Path Width="14" Height="14" Margin="0,2,0,0" Data="{StaticResource Icons.Workspace}"/>

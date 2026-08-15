@@ -62,6 +62,13 @@ namespace SourceGit.ViewModels
             WorkspaceOnly = !WorkspaceOnly;
         }
 
+        public void ConfigureForgeToken()
+        {
+            var activePage = App.GetLauncher().ActivePage;
+            if (activePage != null && activePage.CanCreatePopup())
+                activePage.Popup = new EnterForgeToken();
+        }
+
         public async Task UpdateStatusAsync(bool force, CancellationToken? token)
         {
             if (_isUpdatingStatus)
@@ -75,6 +82,14 @@ namespace SourceGit.ViewModels
 
             foreach (var node in nodes)
                 await node.UpdateStatusAsync(force, token);
+
+            var forgeTasks = new List<Task>();
+            foreach (var node in nodes)
+                node.CollectForgeCountTasks(force, token, forgeTasks);
+            await Task.WhenAll(forgeTasks);
+
+            foreach (var node in nodes)
+                node.NotifyStatusChangedRecursively();
 
             _isUpdatingStatus = false;
         }
