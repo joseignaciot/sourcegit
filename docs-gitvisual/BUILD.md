@@ -31,7 +31,7 @@ git fetch upstream
 ```
 
 - `origin` → fork (joseignaciot/sourcegit)
-- `upstream` → sourcegit-scm/sourcegit (`main` tracks upstream; gitvisual work on `gitvisual/*` branches)
+- `upstream` → sourcegit-scm/sourcegit (`master` tracks upstream; gitvisual work on `gitvisual/*` branches)
 
 ## Build
 
