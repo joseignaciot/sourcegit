@@ -184,6 +184,20 @@
                                    Foreground="{DynamicResource Brush.Window}"/>
                       </Border>
 
+                      <Border Margin="3,0"
+                              Height="18"
+                              CornerRadius="9"
+                              Padding="6,0"
+                              Background="{DynamicResource Brush.Accent}"
+                              VerticalAlignment="Center"
+                              ToolTip.Tip="{DynamicResource Text.Welcome.OpenPullRequests}"
+                              IsVisible="{Binding OpenPullRequestCount, Converter={x:Static ObjectConverters.IsNotNull}}">
+                        <TextBlock Text="{Binding OpenPullRequestCount}"
+                                   FontFamily="{DynamicResource Fonts.Monospace}"
+                                   FontSize="11"
+                                   Foreground="{DynamicResource Brush.Window}"/>
+                      </Border>
+
                       <TextBlock Margin="3,0"
                                  Text="{Binding TrackingDescription}"
                                  FontFamily="{DynamicResource Fonts.Monospace}"

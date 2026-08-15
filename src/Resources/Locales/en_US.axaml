@@ -983,6 +983,14 @@
   <x:String x:Key="Text.Welcome.OpenTerminal" xml:space="preserve">Open Terminal</x:String>
   <x:String x:Key="Text.Welcome.ScanDefaultCloneDir" xml:space="preserve">Rescan Repositories in Default Clone Dir</x:String>
   <x:String x:Key="Text.Welcome.WorkspaceOnly" xml:space="preserve">Show Active Workspace Only</x:String>
+  <x:String x:Key="Text.Welcome.OpenPullRequests" xml:space="preserve">Open PRs / MRs</x:String>
+  <x:String x:Key="Text.Welcome.ForgeToken" xml:space="preserve">Configure Forge Token</x:String>
+  <x:String x:Key="Text.ForgeToken.Title" xml:space="preserve">Forge Access Token</x:String>
+  <x:String x:Key="Text.ForgeToken.Host" xml:space="preserve">Host</x:String>
+  <x:String x:Key="Text.ForgeToken.Kind" xml:space="preserve">Forge</x:String>
+  <x:String x:Key="Text.ForgeToken.Token" xml:space="preserve">Token</x:String>
+  <x:String x:Key="Text.ForgeToken.Tip" xml:space="preserve">The token is stored in the OS keychain, never in plain text. It is used to show open PR/MR counts. GitHub: PAT with repo scope. GitLab: PAT with read_api scope.</x:String>
+  <x:String x:Key="Text.ForgeToken.SaveFailed" xml:space="preserve">Failed to store the token in the OS keychain (macOS only for now).</x:String>
   <x:String x:Key="Text.Welcome.Search" xml:space="preserve">Search Repositories...</x:String>
   <x:String x:Key="Text.WorkingCopy" xml:space="preserve">LOCAL CHANGES</x:String>
   <x:String x:Key="Text.WorkingCopy.AddToGitIgnore" xml:space="preserve">Git Ignore</x:String>

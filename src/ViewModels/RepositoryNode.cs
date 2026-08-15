@@ -183,6 +183,80 @@ namespace SourceGit.ViewModels
             Status = await new Commands.QueryRepositoryStatus(_id).GetResultAsync();
         }
 
+        // Forge counts run in PARALLEL (gathered by Welcome via Task.WhenAll) so N repos
+        // with network down cost one timeout, not N sequential timeouts. Git status
+        // queries stay sequential, matching upstream behavior.
+        public void CollectForgeCountTasks(bool force, CancellationToken? token, List<Task> tasks)
+        {
+            if (_isRepository)
+            {
+                if (Status != null)
+                    tasks.Add(UpdateForgeCountAsync(force, token));
+                return;
+            }
+
+            var subNodes = new List<RepositoryNode>();
+            subNodes.AddRange(SubNodes);
+            foreach (var subNode in subNodes)
+                subNode.CollectForgeCountTasks(force, token, tasks);
+        }
+
+        // The badge binds OpenPullRequestCount in OneWay mode; since counts arrive after
+        // the Status property change notification, re-notify so rows re-render.
+        public void NotifyStatusChangedRecursively()
+        {
+            OnPropertyChanged(nameof(Status));
+            foreach (var subNode in SubNodes)
+                subNode.NotifyStatusChangedRecursively();
+        }
+
+        private async Task UpdateForgeCountAsync(bool force, CancellationToken? token)
+        {
+            Status.OpenPullRequestCount = await QueryOpenPullRequestCountAsync(force, token);
+        }
+
+        private async Task<int?> QueryOpenPullRequestCountAsync(bool force, CancellationToken? token)
+        {
+            try
+            {
+                if (_forgeRemote == null || force)
+                    _forgeRemote = await ResolveForgeRemoteAsync();
+
+                if (_forgeRemote is not { IsValid: true })
+                    return null;
+
+                var provider = Models.Forge.ForgeProviders.For(_forgeRemote.Kind);
+                if (provider == null)
+                    return null;
+
+                return await provider.GetOpenPullRequestCountAsync(_forgeRemote, token ?? CancellationToken.None);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        private async Task<Models.Forge.ForgeRemote> ResolveForgeRemoteAsync()
+        {
+            var remotes = await new Commands.QueryRemotes(_id).GetResultAsync();
+            Models.Forge.ForgeRemote fallback = null;
+
+            foreach (var remote in remotes)
+            {
+                var parsed = Models.Forge.ForgeRemoteParser.Parse(remote.URL);
+                if (!parsed.IsValid)
+                    continue;
+
+                if (remote.Name.Equals("origin", StringComparison.OrdinalIgnoreCase))
+                    return parsed;
+
+                fallback ??= parsed;
+            }
+
+            return fallback ?? new Models.Forge.ForgeRemote();
+        }
+
         public void LoadMinimalInfo(string gitDir)
         {
             var savedTo = Path.Combine(gitDir, "sourcegit.node");
@@ -232,5 +306,6 @@ namespace SourceGit.ViewModels
         private bool _isVisible = true;
         private Models.RepositoryStatus _status = null;
         private DateTime _lastUpdateStatus = DateTime.UnixEpoch.ToLocalTime();
+        private Models.Forge.ForgeRemote _forgeRemote = null;
     }
 }

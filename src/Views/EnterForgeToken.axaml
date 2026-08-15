@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SourceGit.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SourceGit.Views.EnterForgeToken"
+             x:DataType="vm:EnterForgeToken">
+  <StackPanel Orientation="Vertical" Margin="8,0,0,0">
+    <StackPanel Orientation="Horizontal">
+      <Path Width="16" Height="16"
+            Data="{StaticResource Icons.Lock}"/>
+
+      <TextBlock FontSize="18"
+                 Margin="8,0,0,0"
+                 Classes="bold"
+                 Text="{DynamicResource Text.ForgeToken.Title}"/>
+    </StackPanel>
+
+    <Grid Margin="8,16,0,0" Height="28" ColumnDefinitions="Auto,*">
+      <TextBlock Grid.Column="0" HorizontalAlignment="Right" Margin="8,0" Text="{DynamicResource Text.ForgeToken.Host}"/>
+      <TextBox Grid.Column="1" CornerRadius="3" Text="{Binding Host, Mode=TwoWay}" Watermark="github.com"/>
+    </Grid>
+
+    <Grid Margin="8,8,0,0" Height="28" ColumnDefinitions="Auto,*">
+      <TextBlock Grid.Column="0" HorizontalAlignment="Right" Margin="8,0" Text="{DynamicResource Text.ForgeToken.Kind}"/>
+      <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+        <RadioButton Margin="8,0,0,0" Content="GitHub" IsChecked="{Binding !IsGitLab}"/>
+        <RadioButton Margin="16,0,0,0" Content="GitLab" IsChecked="{Binding IsGitLab}"/>
+      </StackPanel>
+    </Grid>
+
+    <Grid Margin="8,8,0,0" Height="28" ColumnDefinitions="Auto,*">
+      <TextBlock Grid.Column="0" HorizontalAlignment="Right" Margin="8,0" Text="{DynamicResource Text.ForgeToken.Token}"/>
+      <TextBox Grid.Column="1" CornerRadius="3" PasswordChar="*" Text="{Binding Token, Mode=TwoWay}"/>
+    </Grid>
+
+    <TextBlock Margin="8,8,0,0"
+               FontSize="11"
+               Opacity=".6"
+               TextWrapping="Wrap"
+               Text="{DynamicResource Text.ForgeToken.Tip}"/>
+  </StackPanel>
+</UserControl>

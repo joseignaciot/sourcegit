@@ -987,6 +987,14 @@
   <x:String x:Key="Text.Welcome.OpenTerminal" xml:space="preserve">Abrir Terminal</x:String>
   <x:String x:Key="Text.Welcome.ScanDefaultCloneDir" xml:space="preserve">Reescanear Repositorios en el Directorio de Clonado por Defecto</x:String>
   <x:String x:Key="Text.Welcome.WorkspaceOnly" xml:space="preserve">Mostrar Solo el Workspace Activo</x:String>
+  <x:String x:Key="Text.Welcome.OpenPullRequests" xml:space="preserve">PRs / MRs Abiertos</x:String>
+  <x:String x:Key="Text.Welcome.ForgeToken" xml:space="preserve">Configurar Token de Forge</x:String>
+  <x:String x:Key="Text.ForgeToken.Title" xml:space="preserve">Token de Acceso al Forge</x:String>
+  <x:String x:Key="Text.ForgeToken.Host" xml:space="preserve">Host</x:String>
+  <x:String x:Key="Text.ForgeToken.Kind" xml:space="preserve">Forge</x:String>
+  <x:String x:Key="Text.ForgeToken.Token" xml:space="preserve">Token</x:String>
+  <x:String x:Key="Text.ForgeToken.Tip" xml:space="preserve">El token se guarda en el llavero del sistema operativo, nunca en texto plano. Se usa para mostrar la cantidad de PRs/MRs abiertos. GitHub: PAT con scope repo. GitLab: PAT con scope read_api.</x:String>
+  <x:String x:Key="Text.ForgeToken.SaveFailed" xml:space="preserve">No se pudo guardar el token en el llavero del sistema (solo macOS por ahora).</x:String>
   <x:String x:Key="Text.Welcome.Search" xml:space="preserve">Buscar Repositorios...</x:String>
   <x:String x:Key="Text.WorkingCopy" xml:space="preserve">Cambios</x:String>
   <x:String x:Key="Text.WorkingCopy.AddToGitIgnore" xml:space="preserve">Git Ignore</x:String>

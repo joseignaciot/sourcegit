@@ -6,6 +6,7 @@
         public int Ahead { get; set; } = 0;
         public int Behind { get; set; } = 0;
         public int LocalChanges { get; set; } = 0;
+        public int? OpenPullRequestCount { get; set; } = null;
 
         public bool IsTrackingStatusVisible
         {
