@@ -43,6 +43,10 @@ namespace SourceGit.Commands
                 .GetResultAsync()
                 .ConfigureAwait(false);
 
+            status.UnmergedBranchCount = await new CountUnmergedBranches(WorkingDirectory)
+                .GetResultAsync()
+                .ConfigureAwait(false) ?? 0;
+
             return status;
         }
 

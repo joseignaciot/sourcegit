@@ -7,6 +7,7 @@
         public int Behind { get; set; } = 0;
         public int LocalChanges { get; set; } = 0;
         public int? OpenPullRequestCount { get; set; } = null;
+        public int UnmergedBranchCount { get; set; } = 0;
 
         public bool IsTrackingStatusVisible
         {

@@ -988,6 +988,7 @@
   <x:String x:Key="Text.Welcome.ScanDefaultCloneDir" xml:space="preserve">Reescanear Repositorios en el Directorio de Clonado por Defecto</x:String>
   <x:String x:Key="Text.Welcome.WorkspaceOnly" xml:space="preserve">Mostrar Solo el Workspace Activo</x:String>
   <x:String x:Key="Text.Welcome.OpenPullRequests" xml:space="preserve">PRs / MRs Abiertos</x:String>
+  <x:String x:Key="Text.Welcome.UnmergedBranches" xml:space="preserve">Ramas locales con commits sin mergear a la rama principal</x:String>
   <x:String x:Key="Text.Welcome.ForgeToken" xml:space="preserve">Configurar Token de Forge</x:String>
   <x:String x:Key="Text.ForgeToken.Title" xml:space="preserve">Token de Acceso al Forge</x:String>
   <x:String x:Key="Text.ForgeToken.Host" xml:space="preserve">Host</x:String>
