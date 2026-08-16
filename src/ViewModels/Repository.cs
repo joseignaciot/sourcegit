@@ -880,6 +880,7 @@ namespace SourceGit.ViewModels
                 Behind = b.Behind,
                 Remote = b.Remote,
                 IsUpstreamGone = b.IsUpstreamGone,
+                IsUnmergedIntoDefault = b.IsUnmergedIntoDefault,
                 WorktreePath = b.WorktreePath,
             };
 
@@ -1156,6 +1157,17 @@ namespace SourceGit.ViewModels
             {
                 var branches = await new Commands.QueryBranches(FullPath).GetResultAsync().ConfigureAwait(false);
                 var remotes = await new Commands.QueryRemotes(FullPath).GetResultAsync().ConfigureAwait(false);
+                var unmerged = await new Commands.CountUnmergedBranches(FullPath).GetResultAsync().ConfigureAwait(false);
+                if (unmerged != null)
+                {
+                    var unmergedSet = new HashSet<string>(unmerged, StringComparer.Ordinal);
+                    foreach (var b in branches)
+                    {
+                        if (b.IsLocal && !b.IsCurrent && !b.IsDetachedHead)
+                            b.IsUnmergedIntoDefault = unmergedSet.Contains(b.Name);
+                    }
+                }
+
                 var builder = BuildBranchTree(branches, remotes);
 
                 Dispatcher.UIThread.Invoke(() =>

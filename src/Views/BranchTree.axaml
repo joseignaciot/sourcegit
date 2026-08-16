@@ -146,14 +146,25 @@
                 <Run Text="{Binding BranchesCount}" Foreground="{DynamicResource Brush.FG2}"/>
               </TextBlock>
 
-              <!-- Upstream invalid tip -->
-              <Border Grid.Column="2"
-                      Width="12" Height="12"
-                      Margin="8,0"
-                      Background="Transparent"
-                      IsVisible="{Binding ShowUpstreamGoneTip}">
-                <Path Data="{StaticResource Icons.Error}" Fill="DarkOrange"/>
-              </Border>
+              <!-- Row markers -->
+              <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <!-- Unmerged into default branch marker -->
+                <Border Width="12" Height="12"
+                        Margin="8,0"
+                        Background="Transparent"
+                        ToolTip.Tip="{DynamicResource Text.BranchTree.UnmergedIntoDefault}"
+                        IsVisible="{Binding IsUnmergedIntoDefault}">
+                  <Path Data="{StaticResource Icons.Branch}" Fill="{DynamicResource Brush.Accent}"/>
+                </Border>
+
+                <!-- Upstream invalid tip -->
+                <Border Width="12" Height="12"
+                        Margin="8,0"
+                        Background="Transparent"
+                        IsVisible="{Binding ShowUpstreamGoneTip}">
+                  <Path Data="{StaticResource Icons.Error}" Fill="DarkOrange"/>
+                </Border>
+              </StackPanel>
 
               <!-- Tracking status -->
               <v:BranchTreeNodeTrackStatusPresenter Grid.Column="3"

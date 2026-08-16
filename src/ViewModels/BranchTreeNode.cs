@@ -44,6 +44,11 @@ namespace SourceGit.ViewModels
             get => Backend is Models.Branch { IsCurrent: true };
         }
 
+        public bool IsUnmergedIntoDefault
+        {
+            get => Backend is Models.Branch { IsLocal: true, IsCurrent: false, IsDetachedHead: false, IsUnmergedIntoDefault: true };
+        }
+
         public bool ShowUpstreamGoneTip
         {
             get => Backend is Models.Branch { IsUpstreamGone: true };
