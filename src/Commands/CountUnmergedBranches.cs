@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SourceGit.Commands
 {
-    // Counts local branches that contain commits not reachable from the default branch.
+    // Lists local branches that contain commits not reachable from the default branch.
     // Default branch resolution: refs/remotes/origin/HEAD -> local main -> local master.
     // Returns null when no default branch exists (indicator disabled for that repo).
     public class CountUnmergedBranches : Command
@@ -15,7 +16,7 @@ namespace SourceGit.Commands
             RaiseError = false;
         }
 
-        public async Task<int?> GetResultAsync()
+        public async Task<List<string>> GetResultAsync()
         {
             var defaultBranch = await ResolveDefaultBranchAsync().ConfigureAwait(false);
             if (defaultBranch == null)
@@ -26,8 +27,12 @@ namespace SourceGit.Commands
             if (!rs.IsSuccess)
                 return null;
 
+            var branches = new List<string>();
             var lines = rs.StdOut.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
-            return lines.Length;
+            foreach (var line in lines)
+                branches.Add(line.Trim());
+
+            return branches;
         }
 
         private async Task<string> ResolveDefaultBranchAsync()

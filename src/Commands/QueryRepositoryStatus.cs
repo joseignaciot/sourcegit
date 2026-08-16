@@ -43,9 +43,16 @@ namespace SourceGit.Commands
                 .GetResultAsync()
                 .ConfigureAwait(false);
 
-            status.UnmergedBranchCount = await new CountUnmergedBranches(WorkingDirectory)
+            var unmerged = await new CountUnmergedBranches(WorkingDirectory)
                 .GetResultAsync()
-                .ConfigureAwait(false) ?? 0;
+                .ConfigureAwait(false);
+            if (unmerged is { Count: > 0 })
+            {
+                status.UnmergedBranchCount = unmerged.Count;
+                status.UnmergedBranchesDescription = unmerged.Count <= 10
+                    ? string.Join('\n', unmerged)
+                    : string.Join('\n', unmerged.GetRange(0, 10)) + "\n…";
+            }
 
             return status;
         }
