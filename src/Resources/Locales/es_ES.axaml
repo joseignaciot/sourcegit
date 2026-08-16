@@ -991,6 +991,28 @@
   <x:String x:Key="Text.Welcome.UnmergedBranches" xml:space="preserve">Ramas locales con commits sin mergear a la rama principal</x:String>
   <x:String x:Key="Text.Welcome.ForgeAuthFailed" xml:space="preserve">Token del forge inválido o vencido — reconfigurarlo (ícono candado)</x:String>
   <x:String x:Key="Text.BranchTree.UnmergedIntoDefault" xml:space="preserve">Esta rama tiene commits que TODAVÍA NO están mergeados a la rama principal</x:String>
+  <x:String x:Key="Text.Tip.Fetch" xml:space="preserve">Descarga los commits nuevos del remoto SIN tocar tu trabajo. Siempre es seguro — solo refresca lo que ves del remoto.</x:String>
+  <x:String x:Key="Text.Tip.Pull" xml:space="preserve">Descarga los commits del remoto Y los mergea en tu rama actual. Usalo cuando el indicador ↓ muestra que el remoto tiene commits que vos no tenés.</x:String>
+  <x:String x:Key="Text.Tip.Push" xml:space="preserve">Sube tus commits locales al remoto (GitHub/GitLab). Usalo cuando el indicador ↑ muestra commits que todavía no pusheaste.</x:String>
+  <x:String x:Key="Text.Tip.Stash" xml:space="preserve">Guarda temporalmente tus cambios sin commitear para poder cambiar de rama o hacer pull limpio. Los recuperás después desde la sección Stashes.</x:String>
+  <x:String x:Key="Text.Tip.ApplyPatch" xml:space="preserve">Aplica un archivo .patch/.diff a tu copia de trabajo — útil para importar cambios que alguien te envió sin usar un remoto.</x:String>
+  <x:String x:Key="Text.Tip.GitFlow" xml:space="preserve">Crea o finaliza ramas feature/release/hotfix siguiendo el modelo de ramificación Git Flow.</x:String>
+  <x:String x:Key="Text.Tip.GitLFS" xml:space="preserve">Gestiona Git LFS (Large File Storage): trackea archivos binarios grandes para que no inflen el historial del repositorio.</x:String>
+  <x:String x:Key="Text.Tip.Bisect" xml:space="preserve">Encuentra qué commit introdujo un bug con búsqueda binaria en el historial: marcás commits buenos/malos y git lo va acotando.</x:String>
+  <x:String x:Key="Text.Tip.CustomActions" xml:space="preserve">Ejecuta tus acciones personalizadas (scripts/comandos) configuradas para este repositorio.</x:String>
+  <x:String x:Key="Text.Tip.Clean" xml:space="preserve">Elimina archivos/carpetas no trackeados de la copia de trabajo. Ojo: borra permanentemente archivos que git no está siguiendo.</x:String>
+  <x:String x:Key="Text.Tip.OpenWith" xml:space="preserve">Abre este repositorio con tus herramientas externas configuradas (explorador de archivos, editor, terminal).</x:String>
+  <x:String x:Key="Text.Tip.ViewLogs" xml:space="preserve">Muestra cada comando git que la app ejecuta y su salida — genial para aprender qué pasa detrás de escena o diagnosticar errores.</x:String>
+  <x:String x:Key="Text.Tip.Statistics" xml:space="preserve">Gráficos de actividad de commits a lo largo del tiempo y por autor.</x:String>
+  <x:String x:Key="Text.Tip.Configure" xml:space="preserve">Ajustes específicos de este repositorio (identidad, firma, proxies, LFS...) que pisan las preferencias globales solo para este repo.</x:String>
+  <x:String x:Key="Text.Tip.NavigateToHead" xml:space="preserve">Lleva la vista de historial al commit al que apunta tu rama actual (HEAD).</x:String>
+  <x:String x:Key="Text.Tip.Clone" xml:space="preserve">Descarga un repositorio remoto (GitHub/GitLab/...) a tu máquina y lo agrega a la lista.</x:String>
+  <x:String x:Key="Text.Tip.OpenOrInit" xml:space="preserve">Abre un repositorio local existente, o inicializa uno nuevo en la carpeta que elijas.</x:String>
+  <x:String x:Key="Text.Tip.OpenTerminal" xml:space="preserve">Abre una terminal del sistema. Útil cuando querés correr un comando git a mano.</x:String>
+  <x:String x:Key="Text.Tip.ForgeToken" xml:space="preserve">Configura el token de acceso a GitHub/GitLab usado para mostrar los conteos de PRs/MRs abiertos. Se guarda en el llavero del sistema, nunca en texto plano.</x:String>
+  <x:String x:Key="Text.Tip.WorkspaceOnly" xml:space="preserve">Filtra esta lista para mostrar solo los repositorios que tenés abiertos en tabs (el workspace activo). Tocá de nuevo para ver todo.</x:String>
+  <x:String x:Key="Text.Tip.AddRootFolder" xml:space="preserve">Crea un grupo para organizar tus repositorios en carpetas dentro de esta lista.</x:String>
+  <x:String x:Key="Text.Tip.Scan" xml:space="preserve">Escanea tu directorio de clonado por defecto y agrega a esta lista todos los repositorios git que encuentre.</x:String>
   <x:String x:Key="Text.Welcome.ForgeToken" xml:space="preserve">Configurar Token de Forge</x:String>
   <x:String x:Key="Text.ForgeToken.Title" xml:space="preserve">Token de Acceso al Forge</x:String>
   <x:String x:Key="Text.ForgeToken.Host" xml:space="preserve">Host</x:String>

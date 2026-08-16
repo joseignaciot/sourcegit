@@ -10,44 +10,65 @@
     <StackPanel Grid.Column="0" Orientation="Horizontal">
       <Button Classes="icon_button" Width="32" Command="{Binding Clone}">
         <ToolTip.Tip>
-          <TextBlock>
-            <Run Text="{DynamicResource Text.Welcome.Clone}"/>
-            <Run Text=" "/>
-            <Run Text="{OnPlatform Ctrl+R, macOS=⌘+R}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
-          </TextBlock>
+          <StackPanel Orientation="Vertical" MaxWidth="300">
+            <TextBlock>
+              <Run Text="{DynamicResource Text.Welcome.Clone}"/>
+              <Run Text=" "/>
+              <Run Text="{OnPlatform Ctrl+R, macOS=⌘+R}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            </TextBlock>
+            <TextBlock Classes="small" Margin="0,4,0,0" TextWrapping="Wrap" Text="{DynamicResource Text.Tip.Clone}"/>
+          </StackPanel>
         </ToolTip.Tip>
         <Path Width="16" Height="16" Data="{StaticResource Icons.Clone}" Margin="0,4,0,0"/>
       </Button>
 
       <Button Classes="icon_button" Width="32" Command="{Binding OpenLocalRepository}">
         <ToolTip.Tip>
-          <TextBlock>
-            <Run Text="{DynamicResource Text.Welcome.OpenOrInit}"/>
-            <Run Text=" "/>
-            <Run Text="{OnPlatform Ctrl+L, macOS=⌘+L}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
-          </TextBlock>
+          <StackPanel Orientation="Vertical" MaxWidth="300">
+            <TextBlock>
+              <Run Text="{DynamicResource Text.Welcome.OpenOrInit}"/>
+              <Run Text=" "/>
+              <Run Text="{OnPlatform Ctrl+L, macOS=⌘+L}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            </TextBlock>
+            <TextBlock Classes="small" Margin="0,4,0,0" TextWrapping="Wrap" Text="{DynamicResource Text.Tip.OpenOrInit}"/>
+          </StackPanel>
         </ToolTip.Tip>
         <Path Width="14" Height="14" Data="{StaticResource Icons.Folder.Open}" Margin="0,2,0,0"/>
       </Button>
 
       <Button Classes="icon_button" Width="32" Command="{Binding OpenTerminal}">
         <ToolTip.Tip>
-          <TextBlock>
-            <Run Text="{DynamicResource Text.Welcome.OpenTerminal}"/>
-            <Run Text=" "/>
-            <Run Text="{OnPlatform Ctrl+`, macOS=Λ+`}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
-          </TextBlock>
+          <StackPanel Orientation="Vertical" MaxWidth="300">
+            <TextBlock>
+              <Run Text="{DynamicResource Text.Welcome.OpenTerminal}"/>
+              <Run Text=" "/>
+              <Run Text="{OnPlatform Ctrl+`, macOS=Λ+`}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            </TextBlock>
+            <TextBlock Classes="small" Margin="0,4,0,0" TextWrapping="Wrap" Text="{DynamicResource Text.Tip.OpenTerminal}"/>
+          </StackPanel>
         </ToolTip.Tip>
         <Path Width="13" Height="13" Data="{StaticResource Icons.Terminal}"/>
       </Button>
     </StackPanel>
 
     <StackPanel Grid.Column="2" Orientation="Horizontal">
-      <Button Classes="icon_button" Width="32" Command="{Binding ConfigureForgeToken}" ToolTip.Tip="{DynamicResource Text.Welcome.ForgeToken}">
+      <Button Classes="icon_button" Width="32" Command="{Binding ConfigureForgeToken}">
+        <ToolTip.Tip>
+          <StackPanel Orientation="Vertical" MaxWidth="300">
+            <TextBlock Text="{DynamicResource Text.Welcome.ForgeToken}"/>
+            <TextBlock Classes="small" Margin="0,4,0,0" TextWrapping="Wrap" Text="{DynamicResource Text.Tip.ForgeToken}"/>
+          </StackPanel>
+        </ToolTip.Tip>
         <Path Width="14" Height="14" Margin="0,2,0,0" Data="{StaticResource Icons.Lock}"/>
       </Button>
 
-      <Button Classes="icon_button" Width="32" Command="{Binding ToggleWorkspaceOnly}" ToolTip.Tip="{DynamicResource Text.Welcome.WorkspaceOnly}">
+      <Button Classes="icon_button" Width="32" Command="{Binding ToggleWorkspaceOnly}">
+        <ToolTip.Tip>
+          <StackPanel Orientation="Vertical" MaxWidth="300">
+            <TextBlock Text="{DynamicResource Text.Welcome.WorkspaceOnly}"/>
+            <TextBlock Classes="small" Margin="0,4,0,0" TextWrapping="Wrap" Text="{DynamicResource Text.Tip.WorkspaceOnly}"/>
+          </StackPanel>
+        </ToolTip.Tip>
         <Grid Width="16" Height="16">
           <Path Width="14" Height="14" Margin="0,2,0,0" Data="{StaticResource Icons.Workspace}"/>
           <Border Width="6" Height="6" CornerRadius="3"
@@ -57,11 +78,23 @@
         </Grid>
       </Button>
 
-      <Button Classes="icon_button" Width="32" Command="{Binding AddRootNode}" ToolTip.Tip="{DynamicResource Text.Welcome.AddRootFolder}">
+      <Button Classes="icon_button" Width="32" Command="{Binding AddRootNode}">
+        <ToolTip.Tip>
+          <StackPanel Orientation="Vertical" MaxWidth="300">
+            <TextBlock Text="{DynamicResource Text.Welcome.AddRootFolder}"/>
+            <TextBlock Classes="small" Margin="0,4,0,0" TextWrapping="Wrap" Text="{DynamicResource Text.Tip.AddRootFolder}"/>
+          </StackPanel>
+        </ToolTip.Tip>
         <Path Width="14" Height="14" Margin="0,2,0,0" Data="{StaticResource Icons.Folder.Add}"/>
       </Button>
 
-      <Button Classes="icon_button" Width="32" Command="{Binding ScanDefaultCloneDir}" ToolTip.Tip="{DynamicResource Text.Welcome.ScanDefaultCloneDir}">
+      <Button Classes="icon_button" Width="32" Command="{Binding ScanDefaultCloneDir}">
+        <ToolTip.Tip>
+          <StackPanel Orientation="Vertical" MaxWidth="300">
+            <TextBlock Text="{DynamicResource Text.Welcome.ScanDefaultCloneDir}"/>
+            <TextBlock Classes="small" Margin="0,4,0,0" TextWrapping="Wrap" Text="{DynamicResource Text.Tip.Scan}"/>
+          </StackPanel>
+        </ToolTip.Tip>
         <Path Width="14" Height="14" Data="{StaticResource Icons.Scan}"/>
       </Button>
     </StackPanel>
