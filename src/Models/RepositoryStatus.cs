@@ -8,6 +8,7 @@
         public int LocalChanges { get; set; } = 0;
         public int? OpenPullRequestCount { get; set; } = null;
         public int UnmergedBranchCount { get; set; } = 0;
+        public string UnmergedBranchesDescription { get; set; } = string.Empty;
 
         public bool IsTrackingStatusVisible
         {

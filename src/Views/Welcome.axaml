@@ -205,7 +205,7 @@
                               BorderThickness="1"
                               BorderBrush="{DynamicResource Brush.Accent}"
                               VerticalAlignment="Center"
-                              ToolTip.Tip="{DynamicResource Text.Welcome.UnmergedBranches}"
+                              ToolTip.Tip="{Binding UnmergedBranchesDescription}"
                               IsVisible="{Binding UnmergedBranchCount, Converter={x:Static c:IntConverters.IsGreaterThanZero}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                           <Path Width="10" Height="10" Data="{StaticResource Icons.Branch}"/>
