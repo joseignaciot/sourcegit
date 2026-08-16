@@ -21,13 +21,23 @@ namespace SourceGit.Models.Forge
         public bool IsValid => Kind != ForgeKind.Unknown && !string.IsNullOrEmpty(Owner) && !string.IsNullOrEmpty(Repo);
     }
 
+    public class ForgeCountResult
+    {
+        public int? Count { get; set; } = null;
+
+        // True only when the forge rejected the credentials (401/403 without
+        // rate-limit cause) — used to surface "token invalid or expired" in the UI.
+        public bool AuthFailed { get; set; } = false;
+    }
+
     public interface IForgeProvider
     {
         ForgeKind Kind { get; }
 
-        // Returns the number of open PRs/MRs, or null when the forge is not
-        // configured (no token) or the request failed. Never throws.
-        Task<int?> GetOpenPullRequestCountAsync(ForgeRemote remote, CancellationToken token);
+        // Count is null when the forge is not configured (no token) or the request
+        // failed; AuthFailed distinguishes credential rejection from other failures.
+        // Never throws.
+        Task<ForgeCountResult> GetOpenPullRequestCountAsync(ForgeRemote remote, CancellationToken token);
     }
 
     public static class ForgeProviders

@@ -9,11 +9,13 @@ namespace SourceGit.Models.Forge
     {
         public ForgeKind Kind => ForgeKind.GitLab;
 
-        public async Task<int?> GetOpenPullRequestCountAsync(ForgeRemote remote, CancellationToken token)
+        public async Task<ForgeCountResult> GetOpenPullRequestCountAsync(ForgeRemote remote, CancellationToken token)
         {
+            var result = new ForgeCountResult();
+
             var credential = ForgeCredentialStore.Get(TokenKey(remote));
             if (string.IsNullOrEmpty(credential))
-                return null;
+                return result;
 
             try
             {
@@ -24,7 +26,12 @@ namespace SourceGit.Models.Forge
                 var url = $"https://{remote.Host}/api/v4/projects/{project}/merge_requests?state=opened&per_page=1";
                 using var response = await client.GetAsync(url, token).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode)
-                    return null;
+                {
+                    // GitLab answers 401 for invalid/expired tokens.
+                    if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                        result.AuthFailed = true;
+                    return result;
+                }
 
                 // GitLab returns the total in the x-total header.
                 if (response.Headers.TryGetValues("x-total", out var totals))
@@ -32,17 +39,21 @@ namespace SourceGit.Models.Forge
                     foreach (var total in totals)
                     {
                         if (int.TryParse(total, out var count))
-                            return count;
+                        {
+                            result.Count = count;
+                            return result;
+                        }
                     }
                 }
 
                 var body = await response.Content.ReadAsStringAsync(token).ConfigureAwait(false);
                 var trimmed = body.TrimStart();
-                return trimmed.StartsWith("[") && trimmed.Length > 3 ? 1 : 0;
+                result.Count = trimmed.StartsWith("[") && trimmed.Length > 3 ? 1 : 0;
+                return result;
             }
             catch (Exception)
             {
-                return null;
+                return result;
             }
         }
 
