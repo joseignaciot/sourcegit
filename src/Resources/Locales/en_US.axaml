@@ -985,6 +985,7 @@
   <x:String x:Key="Text.Welcome.WorkspaceOnly" xml:space="preserve">Show Active Workspace Only</x:String>
   <x:String x:Key="Text.Welcome.OpenPullRequests" xml:space="preserve">Open PRs / MRs</x:String>
   <x:String x:Key="Text.Welcome.UnmergedBranches" xml:space="preserve">Local branches with commits not merged into the default branch</x:String>
+  <x:String x:Key="Text.Welcome.ForgeAuthFailed" xml:space="preserve">Forge token invalid or expired — reconfigure it (lock icon)</x:String>
   <x:String x:Key="Text.Welcome.ForgeToken" xml:space="preserve">Configure Forge Token</x:String>
   <x:String x:Key="Text.ForgeToken.Title" xml:space="preserve">Forge Access Token</x:String>
   <x:String x:Key="Text.ForgeToken.Host" xml:space="preserve">Host</x:String>

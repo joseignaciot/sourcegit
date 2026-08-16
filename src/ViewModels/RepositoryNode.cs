@@ -212,10 +212,12 @@ namespace SourceGit.ViewModels
 
         private async Task UpdateForgeCountAsync(bool force, CancellationToken? token)
         {
-            Status.OpenPullRequestCount = await QueryOpenPullRequestCountAsync(force, token);
+            var result = await QueryOpenPullRequestCountAsync(force, token);
+            Status.OpenPullRequestCount = result.Count;
+            Status.ForgeAuthFailed = result.AuthFailed;
         }
 
-        private async Task<int?> QueryOpenPullRequestCountAsync(bool force, CancellationToken? token)
+        private async Task<Models.Forge.ForgeCountResult> QueryOpenPullRequestCountAsync(bool force, CancellationToken? token)
         {
             try
             {
@@ -223,17 +225,17 @@ namespace SourceGit.ViewModels
                     _forgeRemote = await ResolveForgeRemoteAsync();
 
                 if (_forgeRemote is not { IsValid: true })
-                    return null;
+                    return new Models.Forge.ForgeCountResult();
 
                 var provider = Models.Forge.ForgeProviders.For(_forgeRemote.Kind);
                 if (provider == null)
-                    return null;
+                    return new Models.Forge.ForgeCountResult();
 
                 return await provider.GetOpenPullRequestCountAsync(_forgeRemote, token ?? CancellationToken.None);
             }
             catch (Exception)
             {
-                return null;
+                return new Models.Forge.ForgeCountResult();
             }
         }
 
