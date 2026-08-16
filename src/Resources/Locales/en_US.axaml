@@ -986,6 +986,28 @@
   <x:String x:Key="Text.Welcome.OpenPullRequests" xml:space="preserve">Open PRs / MRs</x:String>
   <x:String x:Key="Text.Welcome.UnmergedBranches" xml:space="preserve">Local branches with commits not merged into the default branch</x:String>
   <x:String x:Key="Text.Welcome.ForgeAuthFailed" xml:space="preserve">Forge token invalid or expired — reconfigure it (lock icon)</x:String>
+  <x:String x:Key="Text.Tip.Fetch" xml:space="preserve">Downloads the newest commits from the remote WITHOUT touching your work. Always safe — it only refreshes what you can see about the remote.</x:String>
+  <x:String x:Key="Text.Tip.Pull" xml:space="preserve">Downloads remote commits AND merges them into your current branch. Use it when the ↓ indicator shows the remote has commits you don't have yet.</x:String>
+  <x:String x:Key="Text.Tip.Push" xml:space="preserve">Uploads your local commits to the remote (GitHub/GitLab). Use it when the ↑ indicator shows commits you haven't pushed yet.</x:String>
+  <x:String x:Key="Text.Tip.Stash" xml:space="preserve">Shelves your uncommitted changes temporarily so you can switch branches or pull cleanly. Restore them later from the Stashes section.</x:String>
+  <x:String x:Key="Text.Tip.ApplyPatch" xml:space="preserve">Applies a .patch/.diff file to your working copy — useful to import changes someone sent you without a remote.</x:String>
+  <x:String x:Key="Text.Tip.GitFlow" xml:space="preserve">Start or finish feature/release/hotfix branches following the Git Flow branching model.</x:String>
+  <x:String x:Key="Text.Tip.GitLFS" xml:space="preserve">Manage Git LFS (Large File Storage): track big binary files so they don't bloat the repository history.</x:String>
+  <x:String x:Key="Text.Tip.Bisect" xml:space="preserve">Find which commit introduced a bug by binary-searching the history: you mark commits good/bad and git narrows it down.</x:String>
+  <x:String x:Key="Text.Tip.CustomActions" xml:space="preserve">Run your own configured custom actions (scripts/commands) on this repository.</x:String>
+  <x:String x:Key="Text.Tip.Clean" xml:space="preserve">Deletes untracked files/folders from the working copy. Careful: this permanently removes files that git is not tracking.</x:String>
+  <x:String x:Key="Text.Tip.OpenWith" xml:space="preserve">Opens this repository with your configured external tools (file manager, editor, terminal).</x:String>
+  <x:String x:Key="Text.Tip.ViewLogs" xml:space="preserve">Shows every git command the app runs and its output — great for learning what happens under the hood or diagnosing errors.</x:String>
+  <x:String x:Key="Text.Tip.Statistics" xml:space="preserve">Charts of commit activity over time and per author.</x:String>
+  <x:String x:Key="Text.Tip.Configure" xml:space="preserve">Repository-specific settings (identity, signing, proxies, LFS...) that override the global preferences for this repo only.</x:String>
+  <x:String x:Key="Text.Tip.NavigateToHead" xml:space="preserve">Jumps the history view to the commit your current branch points to (HEAD).</x:String>
+  <x:String x:Key="Text.Tip.Clone" xml:space="preserve">Downloads a remote repository (GitHub/GitLab/...) to your machine and adds it to the list.</x:String>
+  <x:String x:Key="Text.Tip.OpenOrInit" xml:space="preserve">Opens an existing local repository, or initializes a brand-new one in a folder you choose.</x:String>
+  <x:String x:Key="Text.Tip.OpenTerminal" xml:space="preserve">Opens a system terminal. Handy when you want to run a git command by hand.</x:String>
+  <x:String x:Key="Text.Tip.ForgeToken" xml:space="preserve">Configure the GitHub/GitLab access token used to show open PR/MR counts. Stored in the OS keychain, never in plain text.</x:String>
+  <x:String x:Key="Text.Tip.WorkspaceOnly" xml:space="preserve">Filters this list to show only the repositories you have open in tabs (the active workspace). Click again to see everything.</x:String>
+  <x:String x:Key="Text.Tip.AddRootFolder" xml:space="preserve">Creates a group to organize your repositories in folders within this list.</x:String>
+  <x:String x:Key="Text.Tip.Scan" xml:space="preserve">Scans your default clone directory and adds every git repository it finds to this list.</x:String>
   <x:String x:Key="Text.Welcome.ForgeToken" xml:space="preserve">Configure Forge Token</x:String>
   <x:String x:Key="Text.ForgeToken.Title" xml:space="preserve">Forge Access Token</x:String>
   <x:String x:Key="Text.ForgeToken.Host" xml:space="preserve">Host</x:String>
